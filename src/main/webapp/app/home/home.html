@@ -1,0 +1,93 @@
+<div ng-cloak>
+    <div class="row">
+        <div class="col-md-4">
+            <span class="hipster img-responsive img-rounded"></span>
+        </div>
+        <div class="col-md-8">
+            <h1>Armadillo Monitor</h1>
+            <p class="lead">This is the functional monitor for Armadillo</p>
+
+            <div ng-switch="vm.isAuthenticated()">
+                <div class="alert alert-success" ng-switch-when="true" data-translate="home.logged.message"
+                     translate-values="{username: '{{vm.account.login}}'}">
+                    You are logged in as user "{{vm.account.login}}".
+                </div>
+                <!--(healthChecks table)Added new-->
+                <div>
+                    <h2>Armadillo Health Checks</h2>
+
+                    <p>
+                        <button type="button" class="btn btn-primary" ng-click="vm.refresh()"><span
+                            class="glyphicon glyphicon-refresh"></span>&nbsp;<span>Refresh</span>
+                        </button>
+                    </p>
+
+                    <table id="healthCheck" class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th class="col-md-7">Armadillo Name</th>
+                            <th class="col-md-2 text-center">Status</th>
+                            <th class="col-md-2 text-center">Details</th>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="health in vm.healthData">
+                            <td>{{health.name}}</td>
+                            <td class="text-center">
+                    <span class="label" ng-class="vm.getLabelClass(health.status)">
+                        {{health.status}}
+                    </span>
+                            </td>
+                            <td class="text-center">
+                                <a class="hand" ng-click="vm.showHealth(health)"
+                                   ng-show="health.details || health.error">
+                                    <i class="glyphicon glyphicon-eye-open"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="alert alert-warning" ng-switch-when="false"
+                     data-translate="global.messages.info.authenticated" translate-compile>
+                    If you want to <a class="alert-link" href="" ng-click="vm.login()">sign in</a>, you can try the
+                    default accounts:<br/>- Administrator (login="admin" and password="admin") <br/>- User (login="user"
+                    and password="user").
+                </div>
+
+                <div class="alert alert-warning" ng-switch-when="false" data-translate="global.messages.info.register"
+                     translate-compile>
+                    You don't have an account yet? <a class="alert-link" ui-sref="register">Register a new account</a>
+                </div>
+                <div>
+                    <h2>New's Armadillos</h2>
+                    <table id="progress" class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th class="col-md-2">Armadillo Name</th>
+                            <th class="col-md-4">Step</th>
+                            <th class="col-md-5">Progress</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>
+                                <b>Armadillo1</b>
+                            </td>
+                            <td><p><span>Recolecting project information</span> (Step 1/6)</p>
+                            <td>
+                                <uib-progressbar min="0" max="6" value="1" class="progress-striped active"
+                                                 type="success">
+                                    <span>1/6</span>
+                                </uib-progressbar>
+                            </td>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>

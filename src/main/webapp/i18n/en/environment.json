@@ -1,0 +1,11 @@
+{
+    "armadilloMonitorApp": {
+        "Environment" : {
+            "null": "",
+            "DEV": "DEV",
+            "PRE": "PRE",
+            "PROD": "PROD",
+            "QA": "QA"
+        }
+    }
+}

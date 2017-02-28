@@ -1,0 +1,31 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "managementUrl",
+            "fieldType": "String",
+            "fieldValidateRules": []
+        },
+        {
+            "fieldName": "healthUrl",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "serviceUrl",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "metadata",
+            "fieldType": "String"
+        }
+    ],
+    "dto": "no",
+    "service": "serviceImpl",
+    "entityTableName": "instance",
+    "pagination": "pager"
+}
