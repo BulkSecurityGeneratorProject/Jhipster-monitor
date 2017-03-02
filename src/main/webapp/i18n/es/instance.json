@@ -17,10 +17,8 @@
                 "title": "Instance"
             },
             "name": "Name",
-            "managementUrl": "Management Url",
-            "healthUrl": "Health Url",
-            "serviceUrl": "Service Url",
-            "metadata": "Metadata"
+            "metadata": "Metadata",
+            "armadillo_url": "Armadillo Url"
         }
     }
 }

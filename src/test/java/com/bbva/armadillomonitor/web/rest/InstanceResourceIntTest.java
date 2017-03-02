@@ -40,17 +40,11 @@ public class InstanceResourceIntTest {
     private static final String DEFAULT_NAME = "AAAAA";
     private static final String UPDATED_NAME = "BBBBB";
 
-    private static final String DEFAULT_MANAGEMENT_URL = "AAAAA";
-    private static final String UPDATED_MANAGEMENT_URL = "BBBBB";
-
-    private static final String DEFAULT_HEALTH_URL = "AAAAA";
-    private static final String UPDATED_HEALTH_URL = "BBBBB";
-
-    private static final String DEFAULT_SERVICE_URL = "AAAAA";
-    private static final String UPDATED_SERVICE_URL = "BBBBB";
-
     private static final String DEFAULT_METADATA = "AAAAA";
     private static final String UPDATED_METADATA = "BBBBB";
+
+    private static final String DEFAULT_ARMADILLO_URL = "AAAAA";
+    private static final String UPDATED_ARMADILLO_URL = "BBBBB";
 
     @Inject
     private InstanceRepository instanceRepository;
@@ -87,10 +81,8 @@ public class InstanceResourceIntTest {
     public static Instance createEntity() {
         Instance instance = new Instance()
                 .name(DEFAULT_NAME)
-                .managementUrl(DEFAULT_MANAGEMENT_URL)
-                .healthUrl(DEFAULT_HEALTH_URL)
-                .serviceUrl(DEFAULT_SERVICE_URL)
-                .metadata(DEFAULT_METADATA);
+                .metadata(DEFAULT_METADATA)
+                .armadillo_url(DEFAULT_ARMADILLO_URL);
         return instance;
     }
 
@@ -116,10 +108,8 @@ public class InstanceResourceIntTest {
         assertThat(instances).hasSize(databaseSizeBeforeCreate + 1);
         Instance testInstance = instances.get(instances.size() - 1);
         assertThat(testInstance.getName()).isEqualTo(DEFAULT_NAME);
-        assertThat(testInstance.getManagementUrl()).isEqualTo(DEFAULT_MANAGEMENT_URL);
-        assertThat(testInstance.getHealthUrl()).isEqualTo(DEFAULT_HEALTH_URL);
-        assertThat(testInstance.getServiceUrl()).isEqualTo(DEFAULT_SERVICE_URL);
         assertThat(testInstance.getMetadata()).isEqualTo(DEFAULT_METADATA);
+        assertThat(testInstance.getArmadillo_url()).isEqualTo(DEFAULT_ARMADILLO_URL);
     }
 
     @Test
@@ -133,10 +123,8 @@ public class InstanceResourceIntTest {
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
                 .andExpect(jsonPath("$.[*].id").value(hasItem(instance.getId())))
                 .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
-                .andExpect(jsonPath("$.[*].managementUrl").value(hasItem(DEFAULT_MANAGEMENT_URL.toString())))
-                .andExpect(jsonPath("$.[*].healthUrl").value(hasItem(DEFAULT_HEALTH_URL.toString())))
-                .andExpect(jsonPath("$.[*].serviceUrl").value(hasItem(DEFAULT_SERVICE_URL.toString())))
-                .andExpect(jsonPath("$.[*].metadata").value(hasItem(DEFAULT_METADATA.toString())));
+                .andExpect(jsonPath("$.[*].metadata").value(hasItem(DEFAULT_METADATA.toString())))
+                .andExpect(jsonPath("$.[*].armadillo_url").value(hasItem(DEFAULT_ARMADILLO_URL.toString())));
     }
 
     @Test
@@ -150,10 +138,8 @@ public class InstanceResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(instance.getId()))
             .andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString()))
-            .andExpect(jsonPath("$.managementUrl").value(DEFAULT_MANAGEMENT_URL.toString()))
-            .andExpect(jsonPath("$.healthUrl").value(DEFAULT_HEALTH_URL.toString()))
-            .andExpect(jsonPath("$.serviceUrl").value(DEFAULT_SERVICE_URL.toString()))
-            .andExpect(jsonPath("$.metadata").value(DEFAULT_METADATA.toString()));
+            .andExpect(jsonPath("$.metadata").value(DEFAULT_METADATA.toString()))
+            .andExpect(jsonPath("$.armadillo_url").value(DEFAULT_ARMADILLO_URL.toString()));
     }
 
     @Test
@@ -174,10 +160,8 @@ public class InstanceResourceIntTest {
         Instance updatedInstance = instanceRepository.findOne(instance.getId());
         updatedInstance
                 .name(UPDATED_NAME)
-                .managementUrl(UPDATED_MANAGEMENT_URL)
-                .healthUrl(UPDATED_HEALTH_URL)
-                .serviceUrl(UPDATED_SERVICE_URL)
-                .metadata(UPDATED_METADATA);
+                .metadata(UPDATED_METADATA)
+                .armadillo_url(UPDATED_ARMADILLO_URL);
 
         restInstanceMockMvc.perform(put("/api/instances")
                 .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -189,10 +173,8 @@ public class InstanceResourceIntTest {
         assertThat(instances).hasSize(databaseSizeBeforeUpdate);
         Instance testInstance = instances.get(instances.size() - 1);
         assertThat(testInstance.getName()).isEqualTo(UPDATED_NAME);
-        assertThat(testInstance.getManagementUrl()).isEqualTo(UPDATED_MANAGEMENT_URL);
-        assertThat(testInstance.getHealthUrl()).isEqualTo(UPDATED_HEALTH_URL);
-        assertThat(testInstance.getServiceUrl()).isEqualTo(UPDATED_SERVICE_URL);
         assertThat(testInstance.getMetadata()).isEqualTo(UPDATED_METADATA);
+        assertThat(testInstance.getArmadillo_url()).isEqualTo(UPDATED_ARMADILLO_URL);
     }
 
     @Test

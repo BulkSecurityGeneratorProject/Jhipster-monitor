@@ -1,0 +1,25 @@
+<table id="healthCheck" class="table table-striped">
+    <thead>
+    <tr>
+        <th class="col-md-7">Armadillo Name</th>
+        <th class="col-md-2 text-center">Status</th>
+        <th class="col-md-2 text-center">Details</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="instance in instances">
+        <td>{{instance.name}}</td>
+        <td class="text-center">
+            <armadillo-healths id-armadillo="instance.id">
+            </armadillo-healths>
+        </td>
+        <td class="text-center">
+            <a class="hand" ng-click="vm.showHealth(health)"
+               ng-show="health.details || health.error">
+                <i class="glyphicon glyphicon-eye-open"></i>
+            </a>
+        </td>
+    </tr>
+    </tbody>
+</table>

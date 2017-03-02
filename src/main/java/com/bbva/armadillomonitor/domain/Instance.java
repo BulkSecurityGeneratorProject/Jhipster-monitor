@@ -22,17 +22,11 @@ public class Instance implements Serializable {
     @Field("name")
     private String name;
 
-    @Field("management_url")
-    private String managementUrl;
-
-    @Field("health_url")
-    private String healthUrl;
-
-    @Field("service_url")
-    private String serviceUrl;
-
     @Field("metadata")
     private String metadata;
+
+    @Field("armadillo_url")
+    private String armadillo_url;
 
     public String getId() {
         return id;
@@ -55,45 +49,6 @@ public class Instance implements Serializable {
         this.name = name;
     }
 
-    public String getManagementUrl() {
-        return managementUrl;
-    }
-
-    public Instance managementUrl(String managementUrl) {
-        this.managementUrl = managementUrl;
-        return this;
-    }
-
-    public void setManagementUrl(String managementUrl) {
-        this.managementUrl = managementUrl;
-    }
-
-    public String getHealthUrl() {
-        return healthUrl;
-    }
-
-    public Instance healthUrl(String healthUrl) {
-        this.healthUrl = healthUrl;
-        return this;
-    }
-
-    public void setHealthUrl(String healthUrl) {
-        this.healthUrl = healthUrl;
-    }
-
-    public String getServiceUrl() {
-        return serviceUrl;
-    }
-
-    public Instance serviceUrl(String serviceUrl) {
-        this.serviceUrl = serviceUrl;
-        return this;
-    }
-
-    public void setServiceUrl(String serviceUrl) {
-        this.serviceUrl = serviceUrl;
-    }
-
     public String getMetadata() {
         return metadata;
     }
@@ -105,6 +60,19 @@ public class Instance implements Serializable {
 
     public void setMetadata(String metadata) {
         this.metadata = metadata;
+    }
+
+    public String getArmadillo_url() {
+        return armadillo_url;
+    }
+
+    public Instance armadillo_url(String armadillo_url) {
+        this.armadillo_url = armadillo_url;
+        return this;
+    }
+
+    public void setArmadillo_url(String armadillo_url) {
+        this.armadillo_url = armadillo_url;
     }
 
     @Override
@@ -132,10 +100,8 @@ public class Instance implements Serializable {
         return "Instance{" +
             "id=" + id +
             ", name='" + name + "'" +
-            ", managementUrl='" + managementUrl + "'" +
-            ", healthUrl='" + healthUrl + "'" +
-            ", serviceUrl='" + serviceUrl + "'" +
             ", metadata='" + metadata + "'" +
+            ", armadillo_url='" + armadillo_url + "'" +
             '}';
     }
 }

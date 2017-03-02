@@ -20,10 +20,8 @@
                 <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
                     <th jh-sort-by="id"><span data-translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="name"><span data-translate="armadilloMonitorApp.instance.name">Name</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="managementUrl"><span data-translate="armadilloMonitorApp.instance.managementUrl">Management Url</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="healthUrl"><span data-translate="armadilloMonitorApp.instance.healthUrl">Health Url</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="serviceUrl"><span data-translate="armadilloMonitorApp.instance.serviceUrl">Service Url</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="metadata"><span data-translate="armadilloMonitorApp.instance.metadata">Metadata</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="armadillo_url"><span data-translate="armadilloMonitorApp.instance.armadillo_url">Armadillo Url</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th></th>
                 </tr>
             </thead>
@@ -31,10 +29,8 @@
                 <tr ng-repeat="instance in vm.instances track by instance.id">
                     <td><a ui-sref="instance-detail({id:instance.id})">{{instance.id}}</a></td>
                     <td>{{instance.name}}</td>
-                    <td>{{instance.managementUrl}}</td>
-                    <td>{{instance.healthUrl}}</td>
-                    <td>{{instance.serviceUrl}}</td>
                     <td>{{instance.metadata}}</td>
+                    <td>{{instance.armadillo_url}}</td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">
                             <button type="submit"

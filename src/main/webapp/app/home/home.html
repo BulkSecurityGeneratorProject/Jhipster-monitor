@@ -6,48 +6,17 @@
         <div class="col-md-8">
             <h1>Armadillo Monitor</h1>
             <p class="lead">This is the functional monitor for Armadillo</p>
+            <armadillo-metrics id-armadillo='"58b5852ff9954675e45c7d24"'>
+            </armadillo-metrics>
+
+            <armadillo-health-table>
+            </armadillo-health-table>
+
 
             <div ng-switch="vm.isAuthenticated()">
                 <div class="alert alert-success" ng-switch-when="true" data-translate="home.logged.message"
                      translate-values="{username: '{{vm.account.login}}'}">
                     You are logged in as user "{{vm.account.login}}".
-                </div>
-                <!--(healthChecks table)Added new-->
-                <div>
-                    <h2>Armadillo Health Checks</h2>
-
-                    <p>
-                        <button type="button" class="btn btn-primary" ng-click="vm.refresh()"><span
-                            class="glyphicon glyphicon-refresh"></span>&nbsp;<span>Refresh</span>
-                        </button>
-                    </p>
-
-                    <table id="healthCheck" class="table table-striped">
-                        <thead>
-                        <tr>
-                            <th class="col-md-7">Armadillo Name</th>
-                            <th class="col-md-2 text-center">Status</th>
-                            <th class="col-md-2 text-center">Details</th>
-
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr ng-repeat="health in vm.healthData">
-                            <td>{{health.name}}</td>
-                            <td class="text-center">
-                    <span class="label" ng-class="vm.getLabelClass(health.status)">
-                        {{health.status}}
-                    </span>
-                            </td>
-                            <td class="text-center">
-                                <a class="hand" ng-click="vm.showHealth(health)"
-                                   ng-show="health.details || health.error">
-                                    <i class="glyphicon glyphicon-eye-open"></i>
-                                </a>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
                 </div>
                 <div class="alert alert-warning" ng-switch-when="false"
                      data-translate="global.messages.info.authenticated" translate-compile>

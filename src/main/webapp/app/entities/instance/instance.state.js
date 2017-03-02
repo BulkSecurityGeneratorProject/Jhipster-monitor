@@ -125,10 +125,8 @@
                         entity: function () {
                             return {
                                 name: null,
-                                managementUrl: null,
-                                healthUrl: null,
-                                serviceUrl: null,
                                 metadata: null,
+                                armadillo_url: null,
                                 id: null
                             };
                         }
