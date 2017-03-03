@@ -20,6 +20,8 @@
                 <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
                     <th jh-sort-by="id"><span data-translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="name"><span data-translate="armadilloMonitorApp.application.name">Name</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="environment"><span data-translate="armadilloMonitorApp.application.environment">Environment</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="availability"><span data-translate="armadilloMonitorApp.application.availability">Availability</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th></th>
                 </tr>
             </thead>
@@ -27,6 +29,8 @@
                 <tr ng-repeat="application in vm.applications track by application.id">
                     <td><a ui-sref="application-detail({id:application.id})">{{application.id}}</a></td>
                     <td>{{application.name}}</td>
+                    <td>{{application.environment}}</td>
+                    <td>{{application.availability}}</td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">
                             <button type="submit"

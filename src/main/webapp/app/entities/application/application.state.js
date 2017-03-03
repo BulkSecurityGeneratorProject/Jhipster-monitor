@@ -125,6 +125,8 @@
                         entity: function () {
                             return {
                                 name: null,
+                                environment: null,
+                                availability: null,
                                 id: null
                             };
                         }

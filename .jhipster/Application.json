@@ -5,6 +5,14 @@
         {
             "fieldName": "name",
             "fieldType": "String"
+        },
+        {
+            "fieldName": "environment",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "availability",
+            "fieldType": "String"
         }
     ],
     "dto": "no",

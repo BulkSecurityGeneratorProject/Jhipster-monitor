@@ -40,6 +40,12 @@ public class ApplicationResourceIntTest {
     private static final String DEFAULT_NAME = "AAAAA";
     private static final String UPDATED_NAME = "BBBBB";
 
+    private static final String DEFAULT_ENVIRONMENT = "AAAAA";
+    private static final String UPDATED_ENVIRONMENT = "BBBBB";
+
+    private static final String DEFAULT_AVAILABILITY = "AAAAA";
+    private static final String UPDATED_AVAILABILITY = "BBBBB";
+
     @Inject
     private ApplicationRepository applicationRepository;
 
@@ -74,7 +80,9 @@ public class ApplicationResourceIntTest {
      */
     public static Application createEntity() {
         Application application = new Application()
-                .name(DEFAULT_NAME);
+                .name(DEFAULT_NAME)
+                .environment(DEFAULT_ENVIRONMENT)
+                .availability(DEFAULT_AVAILABILITY);
         return application;
     }
 
@@ -100,6 +108,8 @@ public class ApplicationResourceIntTest {
         assertThat(applications).hasSize(databaseSizeBeforeCreate + 1);
         Application testApplication = applications.get(applications.size() - 1);
         assertThat(testApplication.getName()).isEqualTo(DEFAULT_NAME);
+        assertThat(testApplication.getEnvironment()).isEqualTo(DEFAULT_ENVIRONMENT);
+        assertThat(testApplication.getAvailability()).isEqualTo(DEFAULT_AVAILABILITY);
     }
 
     @Test
@@ -112,7 +122,9 @@ public class ApplicationResourceIntTest {
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
                 .andExpect(jsonPath("$.[*].id").value(hasItem(application.getId())))
-                .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())));
+                .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
+                .andExpect(jsonPath("$.[*].environment").value(hasItem(DEFAULT_ENVIRONMENT.toString())))
+                .andExpect(jsonPath("$.[*].availability").value(hasItem(DEFAULT_AVAILABILITY.toString())));
     }
 
     @Test
@@ -125,7 +137,9 @@ public class ApplicationResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(application.getId()))
-            .andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString()));
+            .andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString()))
+            .andExpect(jsonPath("$.environment").value(DEFAULT_ENVIRONMENT.toString()))
+            .andExpect(jsonPath("$.availability").value(DEFAULT_AVAILABILITY.toString()));
     }
 
     @Test
@@ -145,7 +159,9 @@ public class ApplicationResourceIntTest {
         // Update the application
         Application updatedApplication = applicationRepository.findOne(application.getId());
         updatedApplication
-                .name(UPDATED_NAME);
+                .name(UPDATED_NAME)
+                .environment(UPDATED_ENVIRONMENT)
+                .availability(UPDATED_AVAILABILITY);
 
         restApplicationMockMvc.perform(put("/api/applications")
                 .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -157,6 +173,8 @@ public class ApplicationResourceIntTest {
         assertThat(applications).hasSize(databaseSizeBeforeUpdate);
         Application testApplication = applications.get(applications.size() - 1);
         assertThat(testApplication.getName()).isEqualTo(UPDATED_NAME);
+        assertThat(testApplication.getEnvironment()).isEqualTo(UPDATED_ENVIRONMENT);
+        assertThat(testApplication.getAvailability()).isEqualTo(UPDATED_AVAILABILITY);
     }
 
     @Test

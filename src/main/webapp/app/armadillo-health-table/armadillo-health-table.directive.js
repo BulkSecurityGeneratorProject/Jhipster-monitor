@@ -8,14 +8,21 @@ angular.module('armadilloMonitorApp')
         return {
             restrict: 'E',
             scope: {
-                idArmadillo: '=idArmadillo'
+                idApplication: '=idApplication'
             },
             templateUrl: 'app/armadillo-health-table/armadillo-health-table.html',
-            controller: ['$scope','Instance', function ($scope, Instance) {
+            controller: ['$scope','Instance','Application', function ($scope, Instance, Application) {
+
                 $scope.instances = [];
 
                 $scope.loadInstanceItems = function(){
-                    $scope.instances=Instance.query();
+                    if($scope.idApplication===undefined){
+                        $scope.instances=Instance.query();
+                    }else{
+                        $scope.application = Application.get({id: $scope.idApplication});
+                        $scope.instances = $scope.application.instances;
+                        console.dir($scope.application);
+                    }
                 }
                 $scope.loadInstanceItems();
             }]

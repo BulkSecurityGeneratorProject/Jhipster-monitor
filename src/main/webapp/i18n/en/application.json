@@ -16,7 +16,9 @@
             "detail": {
                 "title": "Application"
             },
-            "name": "Name"
+            "name": "Name",
+            "environment": "Environment",
+            "availability": "Availability"
         }
     }
 }

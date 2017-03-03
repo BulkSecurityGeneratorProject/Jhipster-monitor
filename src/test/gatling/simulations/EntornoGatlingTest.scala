@@ -7,9 +7,9 @@ import org.slf4j.LoggerFactory
 import scala.concurrent.duration._
 
 /**
- * Performance test for the Application entity.
+ * Performance test for the Entorno entity.
  */
-class ApplicationGatlingTest extends Simulation {
+class EntornoGatlingTest extends Simulation {
 
     val context: LoggerContext = LoggerFactory.getILoggerFactory.asInstanceOf[LoggerContext]
     // Log all HTTP requests
@@ -37,7 +37,7 @@ class ApplicationGatlingTest extends Simulation {
         "X-XSRF-TOKEN" -> "${xsrf_token}"
     )
 
-    val scn = scenario("Test the Application entity")
+    val scn = scenario("Test the Entorno entity")
         .exec(http("First unauthenticated request")
         .get("/api/account")
         .headers(headers_http)
@@ -59,26 +59,26 @@ class ApplicationGatlingTest extends Simulation {
         .check(status.is(200)))
         .pause(10)
         .repeat(2) {
-            exec(http("Get all applications")
-            .get("/api/applications")
+            exec(http("Get all entornos")
+            .get("/api/entornos")
             .headers(headers_http_authenticated)
             .check(status.is(200)))
             .pause(10 seconds, 20 seconds)
-            .exec(http("Create new application")
-            .post("/api/applications")
+            .exec(http("Create new entorno")
+            .post("/api/entornos")
             .headers(headers_http_authenticated)
-            .body(StringBody("""{"id":null, "name":"SAMPLE_TEXT", "environment":"SAMPLE_TEXT", "availability":"SAMPLE_TEXT"}""")).asJSON
+            .body(StringBody("""{"id":null, "instance":"SAMPLE_TEXT"}""")).asJSON
             .check(status.is(201))
-            .check(headerRegex("Location", "(.*)").saveAs("new_application_url"))).exitHereIfFailed
+            .check(headerRegex("Location", "(.*)").saveAs("new_entorno_url"))).exitHereIfFailed
             .pause(10)
             .repeat(5) {
-                exec(http("Get created application")
-                .get("${new_application_url}")
+                exec(http("Get created entorno")
+                .get("${new_entorno_url}")
                 .headers(headers_http_authenticated))
                 .pause(10)
             }
-            .exec(http("Delete created application")
-            .delete("${new_application_url}")
+            .exec(http("Delete created entorno")
+            .delete("${new_entorno_url}")
             .headers(headers_http_authenticated))
             .pause(10)
         }

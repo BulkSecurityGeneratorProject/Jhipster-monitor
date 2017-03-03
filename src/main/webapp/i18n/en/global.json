@@ -10,6 +10,7 @@
                 "instance": "Instance",
                 "project": "Project",
                 "application": "Application",
+                "entorno": "Entorno",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

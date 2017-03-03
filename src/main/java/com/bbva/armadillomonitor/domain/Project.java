@@ -5,7 +5,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.io.Serializable;
-import java.util.List;
 import java.util.Objects;
 
 import com.bbva.armadillomonitor.domain.enumeration.Environment;
@@ -27,8 +26,6 @@ public class Project implements Serializable {
 
     @Field("env")
     private Environment env;
-    @Field("applications")
-    private List<Application> applications;
 
     public String getId() {
         return id;

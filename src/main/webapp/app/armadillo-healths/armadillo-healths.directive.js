@@ -14,8 +14,8 @@ angular.module('armadilloMonitorApp')
             controller: ['$scope','ArmadilloHealthsService','Instance', function ($scope, ArmadilloHealthsService) {
                 $scope.health = {};
                 $scope.loadHealthItems = function(){
-                    ArmadilloHealthsService.getHealths($scope.idArmadillo).then(function(metrics){
-                        $scope.health = metrics;
+                    ArmadilloHealthsService.getHealths($scope.idArmadillo).then(function(healths){
+                        $scope.health = healths;
                     }).catch(function(error){
 
                     });

@@ -22,6 +22,12 @@ public class Application implements Serializable {
     @Field("name")
     private String name;
 
+    @Field("environment")
+    private String environment;
+
+    @Field("availability")
+    private String availability;
+
     public String getId() {
         return id;
     }
@@ -41,6 +47,32 @@ public class Application implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getEnvironment() {
+        return environment;
+    }
+
+    public Application environment(String environment) {
+        this.environment = environment;
+        return this;
+    }
+
+    public void setEnvironment(String environment) {
+        this.environment = environment;
+    }
+
+    public String getAvailability() {
+        return availability;
+    }
+
+    public Application availability(String availability) {
+        this.availability = availability;
+        return this;
+    }
+
+    public void setAvailability(String availability) {
+        this.availability = availability;
     }
 
     @Override
@@ -68,6 +100,8 @@ public class Application implements Serializable {
         return "Application{" +
             "id=" + id +
             ", name='" + name + "'" +
+            ", environment='" + environment + "'" +
+            ", availability='" + availability + "'" +
             '}';
     }
 }

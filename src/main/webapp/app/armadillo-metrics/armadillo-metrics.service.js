@@ -18,7 +18,7 @@
             var deferred = $q.defer();
 
             Instance.get({id: idArmadillo}).$promise.then(function(instance) {
-                $http.get(instance.armadillo_url+ "auth/metrics").then(function (response) {
+                $http.get(instance.armadillo_url+ "/metrics").then(function (response) {
                     deferred.resolve(response);
                 }).catch(function(response) {
                     deferred.reject(response);
