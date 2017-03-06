@@ -18,6 +18,36 @@
         </dd>
     </dl>
 
+    <h2>
+        Armadillo Healths
+    </h2>
+    <table id="healthCheck" class="table table-striped">
+        <thead>
+        <tr>
+            <th class="col-md-7">Armadillo Name</th>
+            <th class="col-md-2 text-center">Status</th>
+            <th class="col-md-2 text-center">Details</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>{{vm.instance.name}}</td>
+            <td class="text-center">
+                <armadillo-healths id-armadillo="vm.instance.id">
+                </armadillo-healths>
+            </td>
+            <td class="text-center">
+                <a class="hand">
+                    <i class="glyphicon glyphicon-eye-open"></i>
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <armadillo-metrics id-armadillo="vm.instance.id">
+    </armadillo-metrics>
+
     <button type="submit"
             ui-sref="{{ vm.previousState }}"
             class="btn btn-info">

@@ -28,6 +28,10 @@ public class Application implements Serializable {
     @Field("availability")
     private String availability;
 
+    @Field("environment_type")
+    private String environment_type;
+
+
     public String getId() {
         return id;
     }
@@ -75,6 +79,19 @@ public class Application implements Serializable {
         this.availability = availability;
     }
 
+    public String getEnvironment_type() {
+        return environment_type;
+    }
+
+    public Application environment_type(String environment_type) {
+        this.environment_type = environment_type;
+        return this;
+    }
+
+    public void setEnvironment_type(String environment_type) {
+        this.environment_type = environment_type;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -102,6 +119,7 @@ public class Application implements Serializable {
             ", name='" + name + "'" +
             ", environment='" + environment + "'" +
             ", availability='" + availability + "'" +
+            ", environment_type='" + environment_type + "'" +
             '}';
     }
 }

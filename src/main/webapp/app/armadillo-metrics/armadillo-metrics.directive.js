@@ -13,12 +13,13 @@ angular.module('armadilloMonitorApp')
             templateUrl: 'app/armadillo-metrics/armadillo-metrics.html',
             controller: ['$scope','ArmadilloMetricsService', function ($scope, ArmadilloMetricsService) {
                 $scope.metrics = {};
+                $scope.error={};
                 $scope.loadMetricItems = function(){
                     // $scope.metrics= ArmadilloMetricsService.getMetrics($scope.idArmadillo);
                     ArmadilloMetricsService.getMetrics($scope.idArmadillo).then(function(metrics){
                         $scope.metrics = metrics;
                     }).catch(function(error){
-
+                        $scope.error = error;
                     });
                 }
 

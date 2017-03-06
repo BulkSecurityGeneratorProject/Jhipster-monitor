@@ -13,11 +13,12 @@ angular.module('armadilloMonitorApp')
             templateUrl: 'app/armadillo-healths/armadillo-healths.html',
             controller: ['$scope','ArmadilloHealthsService','Instance', function ($scope, ArmadilloHealthsService) {
                 $scope.health = {};
+                $scope.error = {};
                 $scope.loadHealthItems = function(){
                     ArmadilloHealthsService.getHealths($scope.idArmadillo).then(function(healths){
                         $scope.health = healths;
                     }).catch(function(error){
-
+                        $scope.error = error;
                     });
                 }
 

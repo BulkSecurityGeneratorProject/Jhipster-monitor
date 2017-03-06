@@ -27,6 +27,12 @@ public class Project implements Serializable {
     @Field("env")
     private Environment env;
 
+    @Field("step")
+    private String step;
+
+    @Field("description")
+    private String description;
+
     public String getId() {
         return id;
     }
@@ -61,6 +67,32 @@ public class Project implements Serializable {
         this.env = env;
     }
 
+    public String getStep() {
+        return step;
+    }
+
+    public Project step(String step) {
+        this.step = step;
+        return this;
+    }
+
+    public void setStep(String step) {
+        this.step = step;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public Project description(String description) {
+        this.description = description;
+        return this;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -87,6 +119,8 @@ public class Project implements Serializable {
             "id=" + id +
             ", name='" + name + "'" +
             ", env='" + env + "'" +
+            ", step='" + step + "'" +
+            ", description='" + description + "'" +
             '}';
     }
 }

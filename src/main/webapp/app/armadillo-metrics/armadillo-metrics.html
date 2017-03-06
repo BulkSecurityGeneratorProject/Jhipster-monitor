@@ -1,8 +1,64 @@
 <h2>
     Armadillo Metrics
 </h2>
-<ul>
+<div class="table-responsive" ng-show="metrics.data != null">
+    <table class="table table-striped" >
+        <thead>
+        <tr>
+            <th >Code</th>
+            <th >Count</th>
+            <th class="text-right">Mean</th>
+            <th class="text-right">Average (5 min)</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>OK</td>
+            <td>
+                <uib-progressbar min="0" max="metrics.data.count" value="metrics.data.count" class="progress-striped active" type="success">
+                    {{metrics.data.count}}
+                </uib-progressbar>
+
+            </td>
+            <td class="text-right">
+                {{metrics.data.responses_mean | number:2}}
+            </td>
+            <td class="text-right">{{vm.metrics.meters['com.codahale.metrics.servlet.InstrumentedFilter.responseCodes.ok'].m5_rate | number:2}}
+            </td>
+            <td class="text-right">
+                {{metrics.data.five_minutes_rate | number:2}}
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div class="table-responsive alert-danger"  ng-show="metrics.data == null">
+    Impossible to recover the metrics
+    <table class="table table-striped" >
+        <thead>
+        <tr>
+            <th >Code</th>
+            <th >Info</th>
+            <th class="text-right">Internal Code</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>
+                {{error.data.result.code}}
+            </td>
+            <td>
+                {{error.data.result.info}}
+            </td>
+            <td class="text-right">
+                {{error.data.result.internal_code}}
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<!--<ul>
     <li ></li>
         {{metrics.data}}
     </li>
-</ul>
+</ul>-->

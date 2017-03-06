@@ -20,7 +20,10 @@
                  $http.get(instance.armadillo_url+ "/healthBasic").then(function (response) {
                      deferred.resolve(response);
                  }).catch(function(error) {
-                     deferred.resolve(error);
+                     if(error.status ==-1){
+                         error.statusText="ERROR. Probably caused by net::ERR_INSECURE_RESPONSE. "
+                     }
+                     deferred.reject(error);
                  });
             });
 

@@ -1,5 +1,12 @@
-{{health.status}}
+<div ng-show="health.status !=null">
+    {{health.status}}
                     <span class="label ng-binding" ng-class="getLabelClass(health.status)">
                         {{health.statusText}}
                     </span>
-
+</div>
+<div ng-show="error.status !=null">
+    {{error.status}}
+    <span class="label ng-binding" ng-class="getLabelClass(error.status)">
+                        {{error.statusText}}
+                    </span>
+</div>

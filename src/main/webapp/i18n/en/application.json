@@ -18,7 +18,8 @@
             },
             "name": "Name",
             "environment": "Environment",
-            "availability": "Availability"
+            "availability": "Availability",
+            "environment_type": "Environment Type"
         }
     }
 }

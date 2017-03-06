@@ -44,6 +44,12 @@ public class ProjectResourceIntTest {
     private static final Environment DEFAULT_ENV = Environment.DEV;
     private static final Environment UPDATED_ENV = Environment.PRE;
 
+    private static final String DEFAULT_STEP = "AAAAA";
+    private static final String UPDATED_STEP = "BBBBB";
+
+    private static final String DEFAULT_DESCRIPTION = "AAAAA";
+    private static final String UPDATED_DESCRIPTION = "BBBBB";
+
     @Inject
     private ProjectRepository projectRepository;
 
@@ -79,7 +85,9 @@ public class ProjectResourceIntTest {
     public static Project createEntity() {
         Project project = new Project()
                 .name(DEFAULT_NAME)
-                .env(DEFAULT_ENV);
+                .env(DEFAULT_ENV)
+                .step(DEFAULT_STEP)
+                .description(DEFAULT_DESCRIPTION);
         return project;
     }
 
@@ -106,6 +114,8 @@ public class ProjectResourceIntTest {
         Project testProject = projects.get(projects.size() - 1);
         assertThat(testProject.getName()).isEqualTo(DEFAULT_NAME);
         assertThat(testProject.getEnv()).isEqualTo(DEFAULT_ENV);
+        assertThat(testProject.getStep()).isEqualTo(DEFAULT_STEP);
+        assertThat(testProject.getDescription()).isEqualTo(DEFAULT_DESCRIPTION);
     }
 
     @Test
@@ -119,7 +129,9 @@ public class ProjectResourceIntTest {
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
                 .andExpect(jsonPath("$.[*].id").value(hasItem(project.getId())))
                 .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
-                .andExpect(jsonPath("$.[*].env").value(hasItem(DEFAULT_ENV.toString())));
+                .andExpect(jsonPath("$.[*].env").value(hasItem(DEFAULT_ENV.toString())))
+                .andExpect(jsonPath("$.[*].step").value(hasItem(DEFAULT_STEP.toString())))
+                .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION.toString())));
     }
 
     @Test
@@ -133,7 +145,9 @@ public class ProjectResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(project.getId()))
             .andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString()))
-            .andExpect(jsonPath("$.env").value(DEFAULT_ENV.toString()));
+            .andExpect(jsonPath("$.env").value(DEFAULT_ENV.toString()))
+            .andExpect(jsonPath("$.step").value(DEFAULT_STEP.toString()))
+            .andExpect(jsonPath("$.description").value(DEFAULT_DESCRIPTION.toString()));
     }
 
     @Test
@@ -154,7 +168,9 @@ public class ProjectResourceIntTest {
         Project updatedProject = projectRepository.findOne(project.getId());
         updatedProject
                 .name(UPDATED_NAME)
-                .env(UPDATED_ENV);
+                .env(UPDATED_ENV)
+                .step(UPDATED_STEP)
+                .description(UPDATED_DESCRIPTION);
 
         restProjectMockMvc.perform(put("/api/projects")
                 .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -167,6 +183,8 @@ public class ProjectResourceIntTest {
         Project testProject = projects.get(projects.size() - 1);
         assertThat(testProject.getName()).isEqualTo(UPDATED_NAME);
         assertThat(testProject.getEnv()).isEqualTo(UPDATED_ENV);
+        assertThat(testProject.getStep()).isEqualTo(UPDATED_STEP);
+        assertThat(testProject.getDescription()).isEqualTo(UPDATED_DESCRIPTION);
     }
 
     @Test

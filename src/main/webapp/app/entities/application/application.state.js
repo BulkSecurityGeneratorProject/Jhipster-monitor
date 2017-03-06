@@ -127,6 +127,7 @@
                                 name: null,
                                 environment: null,
                                 availability: null,
+                                environment_type: null,
                                 id: null
                             };
                         }

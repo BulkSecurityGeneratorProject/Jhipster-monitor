@@ -128,6 +128,8 @@
                             return {
                                 name: null,
                                 env: null,
+                                step: null,
+                                description: null,
                                 id: null
                             };
                         }

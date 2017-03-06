@@ -17,7 +17,9 @@
                 "title": "Project"
             },
             "name": "Name",
-            "env": "Env"
+            "env": "Env",
+            "step": "Step",
+            "description": "Description"
         }
     }
 }

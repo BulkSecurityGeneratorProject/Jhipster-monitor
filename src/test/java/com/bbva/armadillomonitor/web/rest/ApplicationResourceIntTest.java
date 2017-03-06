@@ -46,6 +46,9 @@ public class ApplicationResourceIntTest {
     private static final String DEFAULT_AVAILABILITY = "AAAAA";
     private static final String UPDATED_AVAILABILITY = "BBBBB";
 
+    private static final String DEFAULT_ENVIRONMENT_TYPE = "AAAAA";
+    private static final String UPDATED_ENVIRONMENT_TYPE = "BBBBB";
+
     @Inject
     private ApplicationRepository applicationRepository;
 
@@ -82,7 +85,8 @@ public class ApplicationResourceIntTest {
         Application application = new Application()
                 .name(DEFAULT_NAME)
                 .environment(DEFAULT_ENVIRONMENT)
-                .availability(DEFAULT_AVAILABILITY);
+                .availability(DEFAULT_AVAILABILITY)
+                .environment_type(DEFAULT_ENVIRONMENT_TYPE);
         return application;
     }
 
@@ -110,6 +114,7 @@ public class ApplicationResourceIntTest {
         assertThat(testApplication.getName()).isEqualTo(DEFAULT_NAME);
         assertThat(testApplication.getEnvironment()).isEqualTo(DEFAULT_ENVIRONMENT);
         assertThat(testApplication.getAvailability()).isEqualTo(DEFAULT_AVAILABILITY);
+        assertThat(testApplication.getEnvironment_type()).isEqualTo(DEFAULT_ENVIRONMENT_TYPE);
     }
 
     @Test
@@ -124,7 +129,8 @@ public class ApplicationResourceIntTest {
                 .andExpect(jsonPath("$.[*].id").value(hasItem(application.getId())))
                 .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
                 .andExpect(jsonPath("$.[*].environment").value(hasItem(DEFAULT_ENVIRONMENT.toString())))
-                .andExpect(jsonPath("$.[*].availability").value(hasItem(DEFAULT_AVAILABILITY.toString())));
+                .andExpect(jsonPath("$.[*].availability").value(hasItem(DEFAULT_AVAILABILITY.toString())))
+                .andExpect(jsonPath("$.[*].environment_type").value(hasItem(DEFAULT_ENVIRONMENT_TYPE.toString())));
     }
 
     @Test
@@ -139,7 +145,8 @@ public class ApplicationResourceIntTest {
             .andExpect(jsonPath("$.id").value(application.getId()))
             .andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString()))
             .andExpect(jsonPath("$.environment").value(DEFAULT_ENVIRONMENT.toString()))
-            .andExpect(jsonPath("$.availability").value(DEFAULT_AVAILABILITY.toString()));
+            .andExpect(jsonPath("$.availability").value(DEFAULT_AVAILABILITY.toString()))
+            .andExpect(jsonPath("$.environment_type").value(DEFAULT_ENVIRONMENT_TYPE.toString()));
     }
 
     @Test
@@ -161,7 +168,8 @@ public class ApplicationResourceIntTest {
         updatedApplication
                 .name(UPDATED_NAME)
                 .environment(UPDATED_ENVIRONMENT)
-                .availability(UPDATED_AVAILABILITY);
+                .availability(UPDATED_AVAILABILITY)
+                .environment_type(UPDATED_ENVIRONMENT_TYPE);
 
         restApplicationMockMvc.perform(put("/api/applications")
                 .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -175,6 +183,7 @@ public class ApplicationResourceIntTest {
         assertThat(testApplication.getName()).isEqualTo(UPDATED_NAME);
         assertThat(testApplication.getEnvironment()).isEqualTo(UPDATED_ENVIRONMENT);
         assertThat(testApplication.getAvailability()).isEqualTo(UPDATED_AVAILABILITY);
+        assertThat(testApplication.getEnvironment_type()).isEqualTo(UPDATED_ENVIRONMENT_TYPE);
     }
 
     @Test

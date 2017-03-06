@@ -10,6 +10,14 @@
             "fieldName": "env",
             "fieldType": "Environment",
             "fieldValues": "DEV,PRE,PROD,QA"
+        },
+        {
+            "fieldName": "step",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "String"
         }
     ],
     "dto": "no",
